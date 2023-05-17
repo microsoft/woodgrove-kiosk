@@ -1,0 +1,266 @@
+﻿@page
+@{
+    Layout = null;
+}
+@model woodgrovedemo_kiosk.Pages.IndexModel
+@{
+}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Woodgrove Groceries</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/woodgrovedemo.styles.css" asp-append-version="true" />
+
+    <style>
+        img {
+            @*box-shadow:0015pxrgba(0,0,0,0.1),0040pxrgba(0,0,0,0.1),0060pxrgba(0,0,0,0.1),0080pxrgba(0,0,0,0.1);*@@*border-radius:2%;*@border-color: darkgreen;
+            border-style: solid;
+            border-width: 1px;
+            @*border-radius:50%;*@
+        }
+
+        .card {
+            background-color: green;
+            color: white;
+            ;
+        }
+
+        .card-bottom {
+            margin-top: 10px;
+            padding: 0;
+            width: 100%;
+        }
+
+        #myProgress {
+            width: 100%;
+            background-color: grey;
+        }
+
+        #myBar {
+            width: 1%;
+            height: 30px;
+            background-color: green;
+        }
+    </style>
+</head>
+
+<body style="background-color: black;">
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-black box-shadow mb-3">
+            <div class="container">
+                <img src="/images/logo.png" height="24" style="border-style: none!important;" /> <a class="navbar-brand"
+                    asp-area="" asp-page="/Index" style="padding-left: 15px; color: white;">Woodgrove Groceries</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse"
+                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                    <ul class="navbar-nav flex-grow-1">
+                    </ul>
+
+                    <button id="deviceCodeSignIn1" class="btn btn-outline-warning">Sign-in</button>
+
+                    <i class="bi bi-person-fill" id="person" style="color: orange; display: none;"></i>
+                    <div style="color: orange;" id="Username"></div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+
+    <div class="container">
+        <main role="main" class="pb-3">
+            <div class="text-center" id="singInDiv" style="display: none;">
+
+                <div style="color: white; padding-top:50px;">To sign in, scan the QR code and enter the code</div>
+                <div id="userCode" style="color: white; padding-top:10px;" class="h3"></div>
+                <img class="card-img-top" src="~/images/kiosk/qrcode.png" style="width: 400px; margin-top:35px;" alt="">
+                <div style="color: white; padding-top:15px;">https://microsoft.com/devicelogin</div>
+
+                <div class="alert alert-danger" id="alert" role="alert" style="padding-top: 25px; dispaly: none;">
+                    <i class="bi bi-info-circle"></i>&nbsp; <span id="alertMessage"></span>
+                </div>
+
+                <div id="myProgress" style="margin-top:35px;">
+                    <div id="myBar"></div>
+                </div>
+            </div>
+            <div class="text-center" id="cards">
+                <!--First line of products-->
+                <div class="row" style="padding-top: 5px;">
+                    <div class="col-sm-4">
+                        <div class="card text-center">
+                            <div class="card-body">
+                                <img class="card-img-top" src="~/images/kiosk/Picture1.jpg" alt="">
+                                <table class="card-bottom">
+                                    <tr>
+                                        <td>Navajo Tacos</td>
+                                        <td><a href="#" class="btn btn-success"><i class="bi bi-cart3"></i> ADD TO
+                                                CART</a></td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="card text-center">
+                            <div class="card-body">
+                                <img class="card-img-top" src="~/images/kiosk/Picture2.jpg" alt="">
+                                <table class="card-bottom">
+                                    <tr>
+                                        <td>Salad</td>
+                                        <td><a href="#" class="btn btn-success"><i class="bi bi-cart3"></i> ADD TO
+                                                CART</a></td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="card text-center">
+                            <div class="card-body">
+                                <img class="card-img-top" src="~/images/kiosk/Picture3.jpg" alt="">
+                                <table class="card-bottom">
+                                    <tr>
+                                        <td>Hot Dog</td>
+                                        <td><a href="#" class="btn btn-success"><i class="bi bi-cart3"></i> ADD TO
+                                                CART</a></td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!--Second line of products-->
+                <div class="row" style="padding-top: 50px;">
+                    <div class="col-sm-4">
+                        <div class="card text-center">
+                            <div class="card-body">
+                                <img class="card-img-top" src="~/images/kiosk/Picture4.jpg" alt="">
+                                <table class="card-bottom">
+                                    <tr>
+                                        <td>Pancakes</td>
+                                        <td><a href="#" class="btn btn-success"><i class="bi bi-cart3"></i> ADD TO
+                                                CART</a></td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="card text-center">
+                            <div class="card-body">
+                                <img class="card-img-top" src="~/images/kiosk/Picture5.jpg" alt="">
+                                <table class="card-bottom">
+                                    <tr>
+                                        <td>Fried Egg</td>
+                                        <td><a href="#" class="btn btn-success"><i class="bi bi-cart3"></i> ADD TO
+                                                CART</a></td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="card text-center">
+                            <div class="card-body">
+                                <img class="card-img-top" src="~/images/kiosk/Picture6.jpg" alt="">
+                                <table class="card-bottom">
+                                    <tr>
+                                        <td>Pizza</td>
+                                        <td><a href="#" class="btn btn-success"><i class="bi bi-cart3"></i> ADD TO
+                                                CART</a></td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </div>
+
+
+
+
+    <div id="device_code" style="display: none;"></div>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        $(document).ready(function () {
+
+            // First step of the device authorization code flow
+            $("#deviceCodeSignIn1").click(function () {
+
+                $("#cards").hide();
+                $("#alert").hide();
+
+                $.getJSON("/DeviceAuthFlowFirstStep", function (result) {
+                    $("#singInDiv").show();
+                    $("#userCode").text(result.user_code);
+                    $("#device_code").text(result.device_code);
+                    move();
+
+                });
+            });
+        });
+
+        // Second step of the device authorization code flow
+        function checkForToken() {
+
+            // Send the data using post
+            var device_code = "device_code=" + $("#device_code").text();
+            var posting = $.getJSON("/DeviceAuthFlowSecondStep?" + device_code, function (result) {
+
+                if (result.error_description) {
+
+                    if (result.error_description.includes("is pending")) {
+                        move();
+                    }
+                    else {
+                        $("#alertMessage").text(result.error_description);
+                        $("#alert").show();
+                    }
+                }
+                else {
+                    $("#alert").hide();
+                    $("#deviceCodeSignIn1").hide();
+                    $("#singInDiv").hide();
+                    $("#cards").show()
+                    $("#person").show();
+                    $("#Username").text("Welcome to " + result.name);
+                }
+            });
+        }
+
+        var i = 0;
+        function move() {
+            if (i == 0) {
+                i = 1;
+                var elem = document.getElementById("myBar");
+                var width = 1;
+                var id = setInterval(frame, 100);
+                function frame() {
+                    if (width >= 70) {
+                        clearInterval(id);
+                        checkForToken();
+                        i = 0;
+                    } else {
+                        width++;
+                        elem.style.width = width + "%";
+                    }
+                }
+            }
+        }
+    </script>
+
+</body>
+
+</html>
