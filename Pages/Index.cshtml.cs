@@ -4,7 +4,6 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace woodgrovedemo_kiosk.Pages
 {
-    [Authorize]
     public class IndexModel : PageModel
     {
         private readonly IConfiguration Configuration;
