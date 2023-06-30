@@ -19,10 +19,11 @@ namespace woodgrovedemo_kiosk.Pages
         {
 
             // Get the app settings
+            string Authority = Configuration.GetSection("DeviceCodeFlow:Authority").Value!;
             string TenantId = Configuration.GetSection("AzureAd:TenantId").Value!;
             string ClientId = Configuration.GetSection("DeviceCodeFlow:ClientId").Value!;
 
-            string endPoint = $"https://login.microsoftonline.com/{TenantId}/oauth2/v2.0/token";
+            string endpoint = $"{Authority}/{TenantId}/oauth2/v2.0/token";
             string device_code = Request.Query["device_code"]!;
             var client = new HttpClient();
 
@@ -34,7 +35,7 @@ namespace woodgrovedemo_kiosk.Pages
 
             };
 
-            var response = await client.PostAsync(endPoint, new FormUrlEncodedContent(data));
+            var response = await client.PostAsync(endpoint, new FormUrlEncodedContent(data));
             var responseString = await response.Content.ReadAsStringAsync();
 
             // Check for errors

@@ -19,10 +19,14 @@ namespace woodgrovedemo_kiosk.Pages
         public async Task<IActionResult> OnGetAsync()
         {
             // Get the app settings
+            string Authority = Configuration.GetSection("DeviceCodeFlow:Authority").Value!;
             string TenantId = Configuration.GetSection("DeviceCodeFlow:TenantId").Value!;
             string ClientId = Configuration.GetSection("DeviceCodeFlow:ClientId").Value!;
 
-            string endPoint = $"https://login.microsoftonline.com/{TenantId}/oauth2/v2.0/devicecode";
+            
+
+            string endpoint = $"{Authority}{TenantId}/oauth2/v2.0/devicecode";
+            string userEndpoint = $"{Authority}common/oauth2/deviceauth";
             var client = new HttpClient();
 
             var data = new[]
@@ -31,10 +35,11 @@ namespace woodgrovedemo_kiosk.Pages
                 new KeyValuePair<string, string>("scope", "openid profile")
             };
 
-            var response = await client.PostAsync(endPoint, new FormUrlEncodedContent(data));
+            var response = await client.PostAsync(endpoint, new FormUrlEncodedContent(data));
 
             var responseString = await response.Content.ReadAsStringAsync();
-
+            responseString = responseString.Replace("https://microsoft.com/devicelogin", userEndpoint);
+            // Temporary fix to user endpoint location
             return new OkObjectResult(responseString);
         }
     }

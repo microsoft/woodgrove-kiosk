@@ -1,6 +1,7 @@
 ﻿@page
 @{
     Layout = null;
+    ViewData["Title"] = "Restaurant";
 }
 @model woodgrovedemo_kiosk.Pages.IndexModel
 @{
@@ -13,209 +14,176 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - Woodgrove Groceries</title>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="icon" href="~/favicon.ico" type="image/icon type">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/woodgrovedemo.styles.css" asp-append-version="true" />
-
-    <style>
-        img {
-            @*box-shadow:0015pxrgba(0,0,0,0.1),0040pxrgba(0,0,0,0.1),0060pxrgba(0,0,0,0.1),0080pxrgba(0,0,0,0.1);*@@*border-radius:2%;*@border-color: darkgreen;
-            border-style: solid;
-            border-width: 1px;
-            @*border-radius:50%;*@
-        }
-
-        .card {
-            background-color: green;
-            color: white;
-            ;
-        }
-
-        .card-bottom {
-            margin-top: 10px;
-            padding: 0;
-            width: 100%;
-        }
-
-        #myProgress {
-            width: 100%;
-            background-color: grey;
-        }
-
-        #myBar {
-            width: 1%;
-            height: 30px;
-            background-color: green;
-        }
-    </style>
+    @* <link rel="stylesheet" href="~/woodgrovedemo.styles.css" asp-append-version="true" /> *@
 </head>
 
 <body>
 
 
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-black box-shadow mb-3">
-            <div class="container">
-                <img src="/images/logo.png" height="24" style="border-style: none!important;" /> <a class="navbar-brand"
-                    asp-area="" asp-page="/Index" style="padding-left: 15px; color: white;">Woodgrove Groceries</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse"
-                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                    </ul>
+    <header class="header">
+        <div class="container" style="padding-top: 30px; padding-bottom: 30px;">
+            <nav class="navbar navbar-expand-xl">
+                <div class="container">
+                    <img src="/images/logo.png" height="24" style="border-style: none!important;" /> <a
+                        class="navbar-brand" asp-area="" asp-page="/Index" style="padding-left: 15px;">Woodgrove
+                        Restaurants</a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                        data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent" aria-expanded="false"
+                        aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                        <ul class="navbar-nav flex-grow-1">
+                        </ul>
 
-                    @if (User.Identity?.IsAuthenticated == true)
-                    {
-                        <button id="deviceCodeSignIn1" class="btn btn-outline-warning">Sign-in</button>
-                    }
-                    
-                    <i class="bi bi-person-fill" id="person" style="color: orange; display: none;"></i>
-                    <div style="color: orange;" id="Username"></div>
+                        @if (User.Identity?.IsAuthenticated == true)
+                        {
+                            <button id="deviceCodeSignIn1" class="btn header-button">Sign-in</button>
+                        }
+
+                        <i class="bi bi-person-fill" id="person" style="display: none;"></i>
+                        <div id="Username"></div>
+                    </div>
                 </div>
-            </div>
-        </nav>
+            </nav>
+        </div>
     </header>
 
-@if (User.Identity?.IsAuthenticated == false)
-{
-    <div class="container">
-      <main role="main" class="pb-3">
-        <h1 style="color: green; margin-top: 30px;">Authentication is required</h1>
-        <p style="margin-top: 30px;">
-        To use the Woodgrove kiosk demo application, you first need to sign-in with your Microsoft account.
+    @if (User.Identity?.IsAuthenticated == false)
+    {
+        <div class="container">
+            <main role="main" class="pb-3">
+                <h1 style="color: green; margin-top: 30px;">Authentication is required</h1>
+                <p style="margin-top: 30px;">
+                    To use the Woodgrove kiosk demo application, you first need to sign-in with your Microsoft account.
 
-        To start, <a asp-area="MicrosoftIdentity" asp-controller="Account" asp-action="SignIn">sign-in with your work account</a>.    
-        </p>
-      </main>
-    </div>
-}
-else
-{
-<style>
-    body {background-color: black;}
-</style>
+                    To start, <a asp-area="MicrosoftIdentity" asp-controller="Account" asp-action="SignIn">sign-in with your
+                        work account</a>.
+                </p>
+            </main>
+        </div>
+    }
+    else
+    {
+        <div class="container">
+            <main role="main" class="pb-3">
 
-    <div class="container">
-        <main role="main" class="pb-3">
-            <div class="text-center" id="singInDiv" style="display: none;">
-
-                <div style="color: white; padding-top:50px;">To sign in, scan the QR code and enter the code</div>
-                <div id="userCode" style="color: white; padding-top:10px;" class="h3"></div>
-                <img class="card-img-top" src="~/images/kiosk/qrcode.png" style="width: 400px; margin-top:35px;" alt="">
-                <div style="color: white; padding-top:15px;">https://microsoft.com/devicelogin</div>
-
-                <div class="alert alert-danger" id="alert" role="alert" style="padding-top: 25px; dispaly: none;">
+                <div class="alert alert-danger" id="alert" role="alert" style="padding-top: 25px; display: none!important">
                     <i class="bi bi-info-circle"></i>&nbsp; <span id="alertMessage"></span>
                 </div>
 
-                <div id="myProgress" style="margin-top:35px;">
-                    <div id="myBar"></div>
-                </div>
-            </div>
-            <div class="text-center" id="cards">
-                <!--First line of products-->
-                <div class="row" style="padding-top: 5px;">
-                    <div class="col-sm-4">
-                        <div class="card text-center">
-                            <div class="card-body">
-                                <img class="card-img-top" src="~/images/kiosk/Picture1.jpg" alt="">
-                                <table class="card-bottom">
-                                    <tr>
-                                        <td>Navajo Tacos</td>
-                                        <td><a href="#" class="btn btn-success"><i class="bi bi-cart3"></i> ADD TO
-                                                CART</a></td>
-                                    </tr>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-4">
-                        <div class="card text-center">
-                            <div class="card-body">
-                                <img class="card-img-top" src="~/images/kiosk/Picture2.jpg" alt="">
-                                <table class="card-bottom">
-                                    <tr>
-                                        <td>Salad</td>
-                                        <td><a href="#" class="btn btn-success"><i class="bi bi-cart3"></i> ADD TO
-                                                CART</a></td>
-                                    </tr>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-4">
-                        <div class="card text-center">
-                            <div class="card-body">
-                                <img class="card-img-top" src="~/images/kiosk/Picture3.jpg" alt="">
-                                <table class="card-bottom">
-                                    <tr>
-                                        <td>Hot Dog</td>
-                                        <td><a href="#" class="btn btn-success"><i class="bi bi-cart3"></i> ADD TO
-                                                CART</a></td>
-                                    </tr>
-                                </table>
-                            </div>
-                        </div>
+                <div class="text-center" id="singInDiv" style="display: none;">
+
+                    <h4 style="color: white; padding-top:50px;">To sign in, scan the QR code and enter the code</h4>
+                    <div id="userCode" style="color: white; padding-top:10px;" class="h3"></div>
+                    <img class="card-img-top" src="~/images/kiosk/qrcode.png" style="width: 400px; margin-top:35px;" alt="">
+                    <div style="color: white; padding-top:15px;" id="deviceLoginUrl">https://microsoft.com/devicelogin</div>
+
+                    <div id="myProgress" style="margin-top:35px;">
+                        <div id="myBar"></div>
                     </div>
                 </div>
 
-                <!--Second line of products-->
-                <div class="row" style="padding-top: 50px;">
-                    <div class="col-sm-4">
-                        <div class="card text-center">
-                            <div class="card-body">
-                                <img class="card-img-top" src="~/images/kiosk/Picture4.jpg" alt="">
-                                <table class="card-bottom">
-                                    <tr>
-                                        <td>Pancakes</td>
-                                        <td><a href="#" class="btn btn-success"><i class="bi bi-cart3"></i> ADD TO
-                                                CART</a></td>
-                                    </tr>
-                                </table>
+                <div class="text-center" id="cards">
+                    <!--First line of products-->
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <div class="card hp_card">
+                                <div class="card-body">
+                                    <img class="card-img-top" src="~/images/kiosk/Picture1.jpg" alt="">
+                                    <h5 class="card-title">Navajo Tacos</h5>
+
+                                    <div class="reveal-details d-flex justify-content-between">
+                                        <div><i class="bi bi-plus"></i> Add</div>
+                                        <div>$11</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="card hp_card">
+                                <div class="card-body">
+                                    <img class="card-img-top" src="~/images/kiosk/Picture2.jpg" alt="">
+                                    <h5 class="card-title">Italian Chopped Salad</h5>
+                                    <div class="card-discount"><img src="~/images/vegetarian.svg" alt="Aegetarian"
+                                            style="width: 25px;"></div>
+                                    <div class="reveal-details d-flex justify-content-between">
+                                        <div><i class="bi bi-plus"></i> Add</div>
+                                        <div>$6.5</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="card hp_card">
+                                <div class="card-body">
+                                    <img class="card-img-top" src="~/images/kiosk/Picture3.jpg" alt="">
+                                    <h5 class="card-title">Grilled sausages</h5>
+                                    <div class="reveal-details d-flex justify-content-between">
+                                        <div><i class="bi bi-plus"></i> Add</div>
+                                        <div>$4.5</div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-sm-4">
-                        <div class="card text-center">
-                            <div class="card-body">
-                                <img class="card-img-top" src="~/images/kiosk/Picture5.jpg" alt="">
-                                <table class="card-bottom">
-                                    <tr>
-                                        <td>Fried Egg</td>
-                                        <td><a href="#" class="btn btn-success"><i class="bi bi-cart3"></i> ADD TO
-                                                CART</a></td>
-                                    </tr>
-                                </table>
+
+                    <!--Second line of products-->
+                    <div class="row" style="padding-top: 50px;">
+                        <div class="col-sm-4">
+                            <div class="card hp_card">
+                                <div class="card-body">
+                                    <img class="card-img-top" src="~/images/kiosk/Picture4.jpg" alt="">
+                                    <h5 class="card-title">Pancakes</h5>
+                                    <div class="reveal-details d-flex justify-content-between">
+                                        <div><i class="bi bi-plus"></i> Add</div>
+                                        <div>$3.25</div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-sm-4">
-                        <div class="card text-center">
-                            <div class="card-body">
-                                <img class="card-img-top" src="~/images/kiosk/Picture6.jpg" alt="">
-                                <table class="card-bottom">
-                                    <tr>
-                                        <td>Pizza</td>
-                                        <td><a href="#" class="btn btn-success"><i class="bi bi-cart3"></i> ADD TO
-                                                CART</a></td>
-                                    </tr>
-                                </table>
+                        <div class="col-sm-4">
+                            <div class="card hp_card">
+                                <div class="card-body">
+                                    <img class="card-img-top" src="~/images/kiosk/Picture5.jpg" alt="">
+                                    <h5 class="card-title">Fried Eggs</h5>
+                                    <div class="reveal-details d-flex justify-content-between">
+                                        <div><i class="bi bi-plus"></i> Add</div>
+                                        <div>$5</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="card hp_card">
+                                <div class="card-body">
+                                    <img class="card-img-top" src="~/images/kiosk/Picture6.jpg" alt="">
+                                    <h5 class="card-title">Large Pizza</h5>
+                                    <div class="reveal-details d-flex justify-content-between">
+                                        <div><i class="bi bi-plus"></i> Add</div>
+                                        <div>$18</div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-    </div>
+        </div>
 
-}
+    }
 
 
     <div id="device_code" style="display: none;"></div>
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"
+        integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+        crossorigin="anonymous"></script>
     <script>
         $(document).ready(function () {
 
@@ -226,11 +194,21 @@ else
                 $("#alert").hide();
 
                 $.getJSON("/DeviceAuthFlowFirstStep", function (result) {
-                    $("#singInDiv").show();
-                    $("#userCode").text(result.user_code);
-                    $("#device_code").text(result.device_code);
-                    move();
 
+                    if (result.error_description) {
+
+                        $("#alertMessage").text(result.error_description);
+                        $("#alert").show();
+
+                    }
+                    else {
+                        $("#singInDiv").show();
+                        $("#userCode").text(result.user_code);
+                        $("#device_code").text(result.device_code);
+                        $("#deviceLoginUrl").text(result.verification_uri);
+                        
+                        move();
+                    }
                 });
             });
         });
@@ -271,7 +249,7 @@ else
                 var width = 1;
                 var id = setInterval(frame, 100);
                 function frame() {
-                    if (width >= 70) {
+                    if (width >= 100) {
                         clearInterval(id);
                         checkForToken();
                         i = 0;
@@ -282,7 +260,7 @@ else
                 }
             }
         }
-    </script> 
+    </script>
 </body>
 
 </html>
