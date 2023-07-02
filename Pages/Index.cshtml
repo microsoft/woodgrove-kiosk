@@ -57,12 +57,12 @@
     @if (User.Identity?.IsAuthenticated == false)
     {
         <div class="container">
-            <main role="main" class="pb-3">
+            <main role="main" class="pb-3" style="color: white;">
                 <h1 style="margin-top: 30px;">Authentication is required</h1>
                 <p style="margin-top: 30px;">
                     To use the Woodgrove kiosk demo application, you first need to sign-in with your Microsoft account.
 
-                    To start, <a asp-area="MicrosoftIdentity" asp-controller="Account" asp-action="SignIn">sign-in with your
+                    To start, <a asp-area="MicrosoftIdentity" asp-controller="Account" asp-action="SignIn" style="color: white;">sign-in with your
                         work account</a>.
                 </p>
             </main>
