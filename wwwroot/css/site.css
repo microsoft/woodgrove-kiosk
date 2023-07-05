@@ -1,8 +1,8 @@
 :root {
   --color-light: #CD5888;
   --color-very-light: #f1dce9;
-  --color-dark: #5F264A;
-  --color-very-dark: #421a33;
+  --color-dark: #3a5a40;
+  --color-very-dark: black;
 }
 
 html {
@@ -26,7 +26,7 @@ body {
   /* background: linear-gradient(180deg, var(--color-very-light) 1%, white 100%); */
 }
 
-.link-without-underline, 
+.link-without-underline,
 .link-without-underline a:link,
 .link-without-underline a:visited {
   color: white;
@@ -66,6 +66,43 @@ body {
   opacity: 1;
 }
 
+.card {
+  background-color: black;
+  color: white;
+}
+
+.wg-card-line {
+  border: 2px solid #FFC107;
+  opacity: 100;
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+
+.wg-card-line-left {
+  margin-left: 15% !important;
+}
+
+.wg-card-line-right {
+  margin-right: 15% !important;
+}
+
+.wg-card-image {
+  height: 180px;
+  /* width: 150px; */
+  border-radius: 50%;
+}
+
+@media (max-width: 768px) {
+  .wg-card-image {
+    height: 100px;
+  }
+}
+
+.wg-price {
+  font-size: 20pt;
+  padding-right: 100px;
+}
+
 .card-title {
   /* font-family: cursive;
   font-size: xx-large; */
@@ -74,6 +111,7 @@ body {
   text-align: left;
   font-weight: 300;
   margin: 0 !important;
+  padding-bottom: 8px;
 }
 
 .card-button {
@@ -97,9 +135,9 @@ body {
 
 .card {
   border-radius: 0.55rem;
-  background-color: rgb(244, 251, 244);
+  /* background-color: rgb(244, 251, 244); */
   border-style: none !important;
-  margin-top: 45px !important;
+  /* margin-top: 45px !important; */
   /* box-shadow: 0 0 10px 3px rgb(0 0 0 / 16%) */
 }
 
@@ -270,6 +308,15 @@ body {
   color: white;
 }
 
+.wg-header
+{
+  padding-top: 20px; 
+  padding-bottom: 5px;
+  color: white; 
+  text-align: left; 
+  padding-left: 50px;
+}
+
 .inner-header {
   /* min-height: 220px; */
   width: 100%;
@@ -294,10 +341,10 @@ body {
 /******** jumbotron ************/
 .avatar {
   border-radius: 50%;
-  width: 100%!important;
-  border-color: white; 
-  border-style: solid; 
-  border-width: 2px; 
+  width: 100% !important;
+  border-color: white;
+  border-style: solid;
+  border-width: 2px;
   /* box-shadow: 1px 1px 5px 1px var(--color-light); */
 }
 
@@ -441,15 +488,56 @@ hr.vertical {
 
 /*** Footer ****/
 .footer {
-  position: absolute;
+  position: fixed;
   bottom: 0;
+  left: 0;
   width: 100%;
   height: 60px;
+  background-color: #404040;
   /* Set the fixed height of the footer here */
   line-height: 30px !important;
   /* Vertically center the text there */
-  padding-top: 150px;
+  /* padding-top: 150px; */
   white-space: normal !important;
+}
+
+#Username{
+  color: white;
+  padding-top: 10px;
+  margin-left: 10px;
+  display: inline-block;
+}
+
+.wg-footer-total-arrow {
+  /* display: block; */
+  position: relative;
+  /* float: left; */
+  width: 100px;
+  height: 60px;
+  line-height: 60px;
+  vertical-align: middle;
+  padding: 0 10px;
+  background-color: #FFC107;
+  font-size: 20pt; 
+}
+
+.wg-footer-total-arrow:before {
+  content: '';
+  position: absolute;
+  right: -15px;
+  height: 0;
+  width: 0;
+  border-top: 30px solid transparent;
+  border-bottom: 30px solid transparent;
+  border-left: 16px solid #FFC107;
+}
+
+.wg-footer-total{
+  position: relative; 
+  left: 160px; 
+  color: white; 
+  top: -40px; 
+  font-size: 25pt; 
 }
 
 .footer-text {
@@ -484,3 +572,18 @@ hr.vertical {
 }
 
 /*** Sign-in ends ****/
+
+/*** Sidebar ends ****/
+.sidebar {
+  width: 160px;
+  color: white;
+  background: linear-gradient(184deg, rgba(0, 0, 0, 1) 0%, rgba(96, 96, 96, 1) 100%);
+}
+
+@media (max-width: 970px) {
+  .sidebar {
+    display: none;
+  }
+}
+
+/*** Sidebar ends ****/
