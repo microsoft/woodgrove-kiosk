@@ -1,0 +1,43 @@
+﻿<button id="offcanvasButton" class="btn btn-primary" type="button" data-bs-toggle="offcanvas"
+    data-bs-target="#offcanvasRight" aria-controls="offcanvasRight" onclick="showUseCase('useCase_OnlineRetail');"><i
+        class="bi bi-arrow-up-circle fs-3"></i>&nbsp;&nbsp; <span class="fs-5">About the demo</span></button>
+
+<div class="offcanvas offcanvas-end" data-bs-scroll="true" tabindex="-1" id="offcanvasRight"
+    aria-labelledby="offcanvasRightLabel">
+    <div class="offcanvas-header">
+        <img src="/images/logo.png" height="34" />
+        <h3 id="offcanvasRightLabel" style="padding-top: 5px;;">Woodgrove Restaurant</h3>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body">
+        <div id="scroller" style="transform: translate(0px, 0px) translateZ(0px);">
+            <div>
+                Welcome to the Woodgrove Restaurant demo. This demo shows how to sign-in into input constrained devices.
+                Input-constrained devices are devices that their screen or
+                monitor is limited to text-only and they don’t have a web browser. For example, smart TV, IoT device,
+                robot, gaming console, printers. Or applications with limited user interface, such as a command line
+                application.
+
+                <p>
+                    Although the demo is a rich web app, it simulates a typical self-service kiosk at a restaurant.
+
+                    To start the demo:
+
+                <ol>
+                    <li>This demo requires to first sign-in with your Microsoft Account.</li>
+                    <li>From the footer, select <b>Sign-in and place your order.</b></li>
+                    <li>Scan the QR code with your mobile phone. Alternatively, copy the URL below the QR code. Open
+                        another web browser or tab and navigate to this URL.</li>
+                    <li>On the sign-in page, the device code presented in the kiosk (it's just above the QR code).</li>
+                    <li>Sign-in with your account, create a new one, or choose to sign-in with your social account, such
+                        as Facebook.</li>
+                    <li>Approve the authorization request from the input constrained device.</li>
+                    <li>Now you can close the browser, or leave your mobile phone. The self-service kiosk recognizes
+                        that the authentication was successfully completed. The your name appears in the
+                        footer, and your are invited complete the order with 15% discount.</li>
+                </ol>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
