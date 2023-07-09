@@ -570,13 +570,13 @@ hr.vertical {
 /*** Sign-in elements ****/
 #myProgress {
   width: 100%;
-  background-color: var(--color-very-light);
+  background-color: rgb(177, 177, 177);
 }
 
 #myBar {
   width: 1%;
   height: 30px;
-  background-color: orange;
+  background-color: var(--color-very-light);
 }
 
 /*** Sign-in ends ****/
@@ -595,3 +595,14 @@ hr.vertical {
 }
 
 /*** Sidebar ends ****/
+
+/****** QR code  *****/
+#qrcode{
+  width: 300px; 
+  margin-top:35px;
+  width: 100%;
+}
+
+#qrcode img{
+  display: inline-block!important;
+}

@@ -3,7 +3,8 @@ public class AuthHelper
 {
     public static bool ValidCredentials(HttpRequest req)
     {
-        return (!string.IsNullOrEmpty(PrincipalName(req)));
+        return (req.Host.Host == "localhost" || 
+            string.IsNullOrEmpty(PrincipalName(req)) == false);
     }
 
     public static string PrincipalName(HttpRequest req)
@@ -12,7 +13,7 @@ public class AuthHelper
         {
             return xMsClientPrincipalName;
         }
-
+        
         return null;
     }
 }

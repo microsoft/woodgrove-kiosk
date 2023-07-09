@@ -24,7 +24,7 @@ namespace woodgrovedemo_kiosk.Pages
 
             // Get the app settings
             string Authority = Configuration.GetSection("DeviceCodeFlow:Authority").Value!;
-            string TenantId = Configuration.GetSection("AzureAd:TenantId").Value!;
+            string TenantId = Configuration.GetSection("DeviceCodeFlow:TenantId").Value!;
             string ClientId = Configuration.GetSection("DeviceCodeFlow:ClientId").Value!;
 
             string endpoint = $"{Authority}/{TenantId}/oauth2/v2.0/token";
