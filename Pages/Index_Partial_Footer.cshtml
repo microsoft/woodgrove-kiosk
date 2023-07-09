@@ -7,7 +7,7 @@
         <div class="col-sm-3">
             <div style="min-width: 320px;">
                 <div class="wg-footer-total-arrow">Total</div>
-                <div class="wg-footer-total">$25.00 <span id="discount" style="font-size: medium; padding-left: 10px; display:none;"> 10%</span></div>
+                <div class="wg-footer-total">$25.00 <span id="discount" style="font-size: large; padding-left: 10px; display:none;"> 10% off</span></div>
             </div>
         </div>
         <div class="col-sm-1">
@@ -18,8 +18,14 @@
             @if (!string.IsNullOrEmpty(woodgrovedemo_kiosk.Services.AuthHelper.PrincipalName(Context.Request)))
             {
                 <button type="button" id="deviceCodeSignIn1" class="btn btn-success" style="margin-left: 10px; height: 60px; background-color: green;"><i
-                        class="bi bi-cart4"></i> Sign-in and place your order</button>
+                        class="bi bi-person"></i> Sign-in</button>
+                
                 <div id="Username"></div>
+
+                <button type="button" id="placeYourOrder" class="btn btn-success" style="margin-left: 10px; height: 60px; background-color: green; display: none;"><i
+                        class="bi bi-cart4"></i> Place your order</button>
+
+
                 <span style="display: none;">Enterprise account: @woodgrovedemo_kiosk.Services.AuthHelper.PrincipalName(Context.Request)</span>
             }
             else
