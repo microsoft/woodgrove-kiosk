@@ -11,29 +11,21 @@
             </div>
         </div>
         <div class="col-sm-1">
-            @if (User.Identity != null)
-            {
-                @User.Identity?.IsAuthenticated <br>
-                @User.Identity?.Name
-            }
-            else
-            {
-                <span>User.Identity is null</span> 
-            }
 
         </div>
         <div class="col-sm-7">
 
-            @if (User.Identity?.IsAuthenticated == true)
+            @if (!string.IsNullOrEmpty(woodgrovedemo_kiosk.Services.AuthHelper.PrincipalName(Context.Request)))
             {
                 <button type="button" id="deviceCodeSignIn1" class="btn btn-success" style="margin-left: 10px; height: 60px; background-color: green;"><i
                         class="bi bi-cart4"></i> Sign-in and place your order</button>
                 <div id="Username"></div>
+                <span style="display: none;">Enterprise account: @woodgrovedemo_kiosk.Services.AuthHelper.PrincipalName(Context.Request)</span>
             }
             else
             {
                 <p style="color: red; line-height: normal; padding-top: 10px;">
-                    To use the Woodgrove kiosk demo application, you first need to <a href="/.auth/login/aad"
+                    To use the Woodgrove kiosk demo application, you first need to <a href="/.auth/login/aad?post_login_redirect_uri=/"
                         style="color: red;">sign-in</a> with your Microsoft account.
                 </p>
             }
