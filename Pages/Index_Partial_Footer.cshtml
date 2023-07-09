@@ -11,6 +11,15 @@
             </div>
         </div>
         <div class="col-sm-1">
+            @if (User.Identity != null)
+            {
+                @User.Identity?.IsAuthenticated <br>
+                @User.Identity?.Name
+            }
+            else
+            {
+                <span>User.Identity is null</span> 
+            }
 
         </div>
         <div class="col-sm-7">
