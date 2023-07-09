@@ -1,25 +1,19 @@
 <div class="footer">
 
     <div class="row" id="footer">
-        <div class="col-sm-2">
+        <div class="col-sm-1">
 
         </div>
         <div class="col-sm-3">
-            <div style="background-color: ">
+            <div style="min-width: 320px;">
                 <div class="wg-footer-total-arrow">Total</div>
-
                 <div class="wg-footer-total">$25.00 <span id="discount" style="font-size: medium; padding-left: 10px; display:none;"> 10%</span></div>
-                
-
             </div>
         </div>
         <div class="col-sm-1">
 
         </div>
-        <div class="col-sm-6">
-
-                <button type="button" class="btn btn-success" style="height: 60px; background-color: green;"><i
-                        class="bi bi-cart4"></i> Place your order</button>
+        <div class="col-sm-7">
 
             @if (User.Identity?.IsAuthenticated == true)
             {
@@ -29,13 +23,10 @@
             }
             else
             {
-                <div style="color: red; line-height: normal; padding-top: 10px;">
-                    To use the Woodgrove kiosk demo application, you first need to sign-in with your Microsoft account.
-
-                    To start, <a asp-area="MicrosoftIdentity" asp-controller="Account" asp-action="SignIn"
-                        style="color: white;">sign-in with your
-                        work account</a>.
-                </div>
+                <p style="color: red; line-height: normal; padding-top: 10px;">
+                    To use the Woodgrove kiosk demo application, you first need to <a href="/.auth/login/aad"
+                        style="color: red;">sign-in</a> with your Microsoft account.
+                </p>
             }
         </div>
     </div>

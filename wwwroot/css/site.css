@@ -310,10 +310,10 @@ body {
 
 .wg-header
 {
-  padding-top: 20px; 
+  padding-top: 20px;
   padding-bottom: 5px;
-  color: white; 
-  text-align: left; 
+  color: white;
+  text-align: left;
   padding-left: 50px;
 }
 
@@ -492,7 +492,7 @@ hr.vertical {
   bottom: 0;
   left: 0;
   width: 100%;
-  height: 60px;
+  /* height: 60px; */
   background-color: #404040;
   /* Set the fixed height of the footer here */
   line-height: 30px !important;
@@ -509,22 +509,28 @@ hr.vertical {
 }
 
 .wg-footer-total-arrow {
-  /* display: block; */
+  display: block;
+  float: left;
   position: relative;
-  /* float: left; */
   width: 100px;
   height: 60px;
   line-height: 60px;
-  vertical-align: middle;
   padding: 0 10px;
   background-color: #FFC107;
-  font-size: 20pt; 
+  font-size: 20pt;
+  margin-left: 30px;
+}
+
+@media (max-width: 970px) {
+  .wg-footer-total-arrow {
+    margin-left: 0;
+  }
 }
 
 .wg-footer-total-arrow:before {
   content: '';
   position: absolute;
-  right: -15px;
+  right: -16px;
   height: 0;
   width: 0;
   border-top: 30px solid transparent;
@@ -533,11 +539,13 @@ hr.vertical {
 }
 
 .wg-footer-total{
-  position: relative; 
-  left: 160px; 
-  color: white; 
-  top: -40px; 
-  font-size: 25pt; 
+  display: block;
+  float: left;
+  color: white;
+  font-size: 25pt;
+  height: 100%;
+  line-height: 60px;
+  padding-left: 25px;
 }
 
 .footer-text {
