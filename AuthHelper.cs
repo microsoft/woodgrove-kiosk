@@ -1,7 +1,7 @@
 namespace woodgrovedemo_kiosk.Services;
 public class AuthHelper
 {
-    public static bool ValidateCredentials(HttpRequest req)
+    public static bool ValidCredentials(HttpRequest req)
     {
         return (!string.IsNullOrEmpty(PrincipalName(req)));
     }

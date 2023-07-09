@@ -3,10 +3,10 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using woodgrovedemo_kiosk.Services;
 
 namespace woodgrovedemo_kiosk.Pages
 {
-    [Authorize]
     public class DeviceAuthFlowFirstStepModel : PageModel
     {
         private readonly IConfiguration Configuration;
@@ -18,6 +18,11 @@ namespace woodgrovedemo_kiosk.Pages
 
         public async Task<IActionResult> OnGetAsync()
         {
+            if (!AuthHelper.ValidCredentials(this.Request))
+            {
+                return new UnauthorizedResult();
+            }
+
             // Get the app settings
             string Authority = Configuration.GetSection("DeviceCodeFlow:Authority").Value!;
             string TenantId = Configuration.GetSection("DeviceCodeFlow:TenantId").Value!;
